@@ -4,11 +4,14 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 import com.phongvi.user.Gender;
+import com.phongvi.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -77,4 +80,8 @@ public class Shipper {
 	@Column(nullable = false,
 			length = 50)
 	private String lastChangedBy;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 }

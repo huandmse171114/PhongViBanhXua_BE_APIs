@@ -2,10 +2,15 @@ package com.phongvi.transaction;
 
 import java.sql.Timestamp;
 
+import com.phongvi.order.Order;
+import com.phongvi.wallet.Wallet;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,4 +58,18 @@ public class Transaction {
 	@Column(nullable = false,
 			length = 50)
 	private String lastChangedBy;
+	
+	@ManyToOne
+	@JoinColumn(name = "towallet_id")
+	private Wallet toWallet;
+	
+	@ManyToOne
+	@JoinColumn(name = "fromwallet_id")
+	private Wallet fromWallet;
+	
+	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private Order order;
+	
+	
 }

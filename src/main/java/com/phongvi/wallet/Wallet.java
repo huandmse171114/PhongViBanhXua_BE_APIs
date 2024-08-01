@@ -1,11 +1,17 @@
 package com.phongvi.wallet;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.phongvi.customer.Customer;
+import com.phongvi.transaction.Transaction;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,4 +65,13 @@ public class Wallet {
 	@Column(nullable = false,
 			length = 50)
 	private String lastChangedBy;
+	
+	@OneToOne(mappedBy = "wallet")
+	private Customer customer;
+	
+	@OneToMany(mappedBy = "toWallet")
+	private List<Transaction> receivedTransaction;
+	
+	@OneToMany(mappedBy = "fromWallet")
+	private List<Transaction> sentTransaction;
 }

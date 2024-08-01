@@ -2,10 +2,15 @@ package com.phongvi.blog;
 
 import java.sql.Timestamp;
 
+import com.phongvi.blog_category.BlogCategory;
+import com.phongvi.user.User;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,4 +63,13 @@ public class Blog {
 	@Column(nullable = false,
 			length = 50)
 	private String lastChangedBy;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name = "blogcategory_id")
+	private BlogCategory category;
+	
 }

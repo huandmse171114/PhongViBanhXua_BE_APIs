@@ -2,10 +2,16 @@ package com.phongvi.cart_item;
 
 import java.sql.Timestamp;
 
+import com.phongvi.cart.Cart;
+import com.phongvi.combo.Combo;
+import com.phongvi.product.Product;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,4 +57,16 @@ public class CartItem {
 	@Column(nullable = false,
 			length = 50)
 	private String lastChangedBy;
+	
+	@ManyToOne
+	@JoinColumn(name = "cart_id", nullable = false)
+	private Cart cart;
+	
+	@ManyToOne
+	@JoinColumn(name = "product_id", nullable = true)
+	private Product product;
+	
+	@ManyToOne
+	@JoinColumn(name = "combo_id", nullable = true)
+	private Combo combo;
 }

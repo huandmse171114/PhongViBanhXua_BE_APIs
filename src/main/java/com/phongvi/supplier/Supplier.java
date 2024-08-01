@@ -2,11 +2,21 @@ package com.phongvi.supplier;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.phongvi.product.Product;
+import com.phongvi.product_category.ProductCategory;
+import com.phongvi.user.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -107,6 +117,20 @@ public class Supplier {
 			length = 50)
 	private String lastChangedBy;
 	
+	@OneToMany(mappedBy = "supplier")
+	private List<Product> products;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "tbl_supplier_productcategory",
+			joinColumns = @JoinColumn(name = "supplier_id", nullable = false),
+			inverseJoinColumns = @JoinColumn(name = "productcategory_id", nullable = false)
+	)
+	private List<ProductCategory> categories;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 }
 
 

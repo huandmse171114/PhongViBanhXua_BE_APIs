@@ -2,11 +2,15 @@ package com.phongvi.combo;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.phongvi.combo_item.ComboItem;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -67,4 +71,7 @@ public class Combo {
 	@Column(nullable = false,
 			length = 50)
 	private String lastChangedBy;
+	
+	@OneToMany(mappedBy = "combo")
+	private List<ComboItem> items;
 }
