@@ -21,6 +21,8 @@ import com.phongvi.supplier.Supplier;
 import com.phongvi.supplier.SupplierRepository;
 import com.phongvi.supplier.SupplierStatus;
 import com.phongvi.supplier.dto.SupplierAdminResponseDTO;
+import com.phongvi.supplier.dto.SupplierCreateDTO;
+import com.phongvi.supplier.dto.SupplierUpdateDTO;
 import com.phongvi.utils.Utils;
 
 import lombok.RequiredArgsConstructor;
@@ -145,6 +147,59 @@ public class SupplierServiceImpl implements SupplierService {
 		}else {
 			return Utils.generateMessageResponseEntity("Cập nhật trạng thái nhà cung cấp thành công!", HttpStatus.OK);
 		}
+	}
+
+	@Override
+	public ResponseEntity<?> saveSupplier(SupplierCreateDTO supplierDTO) {
+		Supplier supplier = mappingService.supplierCreateDTOToSupplier(supplierDTO);
+		
+		repository.save(supplier);
+		
+		return Utils.generateMessageResponseEntity("Tạo mới nhà cung cấp thành công!", HttpStatus.OK);
+	}
+
+	@Override
+	public ResponseEntity<?> updateSupplier(Long id, SupplierUpdateDTO supplierDTO) {
+		
+		Optional<Supplier> supplierOptional = repository.findById(id);
+		
+		if (supplierOptional.isEmpty()) {
+			throw new NoSupplierFoundException("Cập nhật thất bại: không tìm thấy nhà cung cấp tương ứng.");
+		}
+		
+		Supplier supplier = supplierOptional.get();
+		
+		List<Long> categoriesId = supplierDTO.categories();
+		
+		List<ProductCategory> categories = productCategoryRepository.findAllByIdIn(categoriesId);
+		
+		if (categories.size() != categoriesId.size()) {
+			throw new NoProductCategoryFoundException("Cập nhật thất bại: không tìm thấy một số danh mục sản phẩm.");
+		}
+		
+		supplier.setName(supplierDTO.name());
+		supplier.setDescription(supplierDTO.description());
+		supplier.setOwnerName(supplierDTO.ownerName());
+		supplier.setPhone(supplierDTO.phone());
+		supplier.setOpenedTime(supplierDTO.openedTime());
+		supplier.setClosedTime(supplierDTO.closedTime());
+		supplier.setStreet(supplierDTO.street());
+		supplier.setWard(supplierDTO.ward());
+		supplier.setDistrict(supplierDTO.district());
+		supplier.setProvince(supplierDTO.province());
+		supplier.setWardCode(supplierDTO.wardCode());
+		supplier.setDistrictId(supplierDTO.districtId());
+		supplier.setProvinceId(supplierDTO.provinceId());
+		supplier.setShopSurroundingImg1(supplierDTO.shopSurroundingImg1());
+		supplier.setShopSurroundingImg2(supplierDTO.shopSurroundingImg2());
+		supplier.setShopSurroundingImg3(supplierDTO.shopSurroundingImg3());
+		supplier.setCategories(categories);
+		supplier.setLastChangedAt(Utils.getCurrentTimestamp());
+		supplier.setLastChangedBy(SecurityContextHolder.getContext().getAuthentication().getName());
+		
+		repository.save(supplier);
+		
+		return Utils.generateMessageResponseEntity("Cập nhật thông tin nhà cung cấp thành công!", HttpStatus.OK);
 	}
 	
 	
