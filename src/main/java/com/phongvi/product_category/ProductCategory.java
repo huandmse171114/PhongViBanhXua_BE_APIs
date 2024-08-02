@@ -40,6 +40,8 @@ public class ProductCategory {
 	
 	private String description;
 	
+	private String categoryImg;
+	
 	@Column(nullable = false)
 	private ProductCategoryStatus status;
 	

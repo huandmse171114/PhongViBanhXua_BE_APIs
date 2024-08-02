@@ -41,16 +41,12 @@ public class Supplier {
 			length = 100)
 	private String name;
 	
+	@Column(length = 1000)
 	private String description;
 	
 	@Column(nullable = false,
 			length = 50)
 	private String ownerName;
-	
-	@Column(nullable = false,
-			unique = true,
-			length = 12)
-	private String ownerId;
 	
 	@Column(nullable = false,
 			unique = true,
@@ -64,7 +60,7 @@ public class Supplier {
 	private Time closedTime;
 	
 //	address must be unique too
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String street;
 	
 	@Column(nullable = false)
@@ -128,9 +124,6 @@ public class Supplier {
 	)
 	private List<ProductCategory> categories;
 	
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private User user;
 }
 
 
