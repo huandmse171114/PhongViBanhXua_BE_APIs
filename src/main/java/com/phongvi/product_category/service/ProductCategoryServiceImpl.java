@@ -69,7 +69,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 					.sorted(new Comparator<ProductCategoryAdminResponseDTO>() {
 						@Override
 						public int compare(ProductCategoryAdminResponseDTO o1, ProductCategoryAdminResponseDTO o2) {
-							return o2.createdAt().compareTo(o1.createdAt());
+							return o2.lastChangedAt().compareTo(o1.lastChangedAt());
 						}
 					})
 					.toList();			
@@ -85,9 +85,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 				response, 
 				pageProductCategories.getTotalPages(), 
 				pageProductCategories.getNumber(), 
-				HttpStatus.OK);
-		
-		
+				HttpStatus.OK);	
 	}
 
 	@Override

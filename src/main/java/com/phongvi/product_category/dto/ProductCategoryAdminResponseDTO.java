@@ -13,6 +13,7 @@ public record ProductCategoryAdminResponseDTO(
 			String parentName,
 			String name,
 			String description,
+			String categoryImg,
 			ProductCategoryStatus status,
 			Timestamp createdAt,
 			String createdBy,

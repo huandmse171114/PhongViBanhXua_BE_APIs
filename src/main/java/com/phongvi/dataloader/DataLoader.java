@@ -8,6 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import com.phongvi.blog_category.BlogCategory;
+import com.phongvi.blog_category.BlogCategoryRepository;
+import com.phongvi.blog_category.BlogCategoryStatus;
 import com.phongvi.product_category.ProductCategory;
 import com.phongvi.product_category.ProductCategoryRepository;
 import com.phongvi.product_category.ProductCategoryStatus;
@@ -24,10 +27,59 @@ import lombok.RequiredArgsConstructor;
 public class DataLoader implements CommandLineRunner {
 	private final ProductCategoryRepository productCategoryRepository;
 	private final SupplierRepository supplierRepository;
+	private final BlogCategoryRepository blogCategoryRepository;
 	private List<Long> productCategoriesId = new ArrayList<>();
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+//		===================================================== Blog Category ====================================================
+		
+//		id =1
+		blogCategoryRepository.save(BlogCategory.builder()
+				.name("Câu chuyện Người Bán")
+				.description("Chia sẻ câu chuyện về cuộc sống, hoàn cảnh và những khó khăn mà các cô chú bán hàng rong đang phải đối mặt. Mục tiêu là để khách hàng hiểu hơn về người bán và góp phần hỗ trợ cô chú.")
+				.createdAt(Utils.getCurrentTimestamp())
+				.createdBy("admin")
+				.lastChangedAt(Utils.getCurrentTimestamp())
+				.lastChangedBy("admin")
+				.status(BlogCategoryStatus.ACTIVE)
+				.build());
+		
+//		id =2
+		blogCategoryRepository.save(BlogCategory.builder()
+				.name("Quỹ Từ Thiện")
+				.description("Cung cấp thông tin về số tiền đã quyên góp được, các hoạt động từ thiện đã thực hiện và kế hoạch sử dụng quỹ trong tương lai.")
+				.createdAt(Utils.getCurrentTimestamp())
+				.createdBy("admin")
+				.lastChangedAt(Utils.getCurrentTimestamp())
+				.lastChangedBy("admin")
+				.status(BlogCategoryStatus.ACTIVE)
+				.build());
+		
+//		id =3
+		blogCategoryRepository.save(BlogCategory.builder()
+				.name("Sản phẩm mới")
+				.description("Giới thiệu về các món ăn mới ra mắt, là nơi để khách hàng có thể biết về các chương trình khuyến mãi và ưu đãi đặc biệt.")
+				.createdAt(Utils.getCurrentTimestamp())
+				.createdBy("admin")
+				.lastChangedAt(Utils.getCurrentTimestamp())
+				.lastChangedBy("admin")
+				.status(BlogCategoryStatus.ACTIVE)
+				.build());
+		
+//		id =4
+		blogCategoryRepository.save(BlogCategory.builder()
+				.name("Chia sẻ từ Khách Hàng")
+				.description("Đăng tải các câu chuyện, đánh giá và phản hồi từ khách hàng. tạo cơ hội để khách hàng chia sẻ cảm nhận cũng như trải nghiệm của bản thân.")
+				.createdAt(Utils.getCurrentTimestamp())
+				.createdBy("admin")
+				.lastChangedAt(Utils.getCurrentTimestamp())
+				.lastChangedBy("admin")
+				.status(BlogCategoryStatus.ACTIVE)
+				.build());
+		
+		
 		
 //		===================================================== Parent-level Product Category =====================================
 //		id = 1

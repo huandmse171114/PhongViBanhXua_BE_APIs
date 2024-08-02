@@ -98,7 +98,7 @@ public class SupplierServiceImpl implements SupplierService {
 					.sorted(new Comparator<SupplierAdminResponseDTO>() {
 						@Override
 						public int compare(SupplierAdminResponseDTO o1, SupplierAdminResponseDTO o2) {
-							return o2.createdAt().compareTo(o1.createdAt());
+							return o2.lastChangedAt().compareTo(o1.lastChangedAt());
 						}
 					})
 					.toList();

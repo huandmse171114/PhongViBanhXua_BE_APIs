@@ -33,6 +33,7 @@ public class ProductCategoryMappingService {
 					: null)
 				.name(productCategory.getName())
 				.description(productCategory.getDescription())
+				.categoryImg(productCategory.getCategoryImg())
 				.status(productCategory.getStatus())
 				.createdAt(productCategory.getCreatedAt())
 				.createdBy(productCategory.getCreatedBy())
@@ -52,6 +53,7 @@ public class ProductCategoryMappingService {
 					: null)
 				.name(productCategory.getName())
 				.description(productCategory.getDescription())
+				.categoryImg(productCategory.getCategoryImg())
 				.build();
 	}
 	

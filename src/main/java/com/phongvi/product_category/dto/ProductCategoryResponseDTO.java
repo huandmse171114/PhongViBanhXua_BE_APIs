@@ -8,7 +8,8 @@ public record ProductCategoryResponseDTO(
 			Long parentId,
 			String parentName,
 			String name,
-			String description
+			String description,
+			String categoryImg
 		) {
 
 }
