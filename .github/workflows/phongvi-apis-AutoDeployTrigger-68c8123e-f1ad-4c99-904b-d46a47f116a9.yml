@@ -1,0 +1,48 @@
+name: Trigger auto deployment for phongvi-apis
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/phongvi-apis-AutoDeployTrigger-68c8123e-f1ad-4c99-904b-d46a47f116a9.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:      
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write #This is required for requesting the OIDC JWT Token
+      contents: read #Required when GH token is used to authenticate with private repo
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.PHONGVIAPIS_AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.PHONGVIAPIS_AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.PHONGVIAPIS_AZURE_SUBSCRIPTION_ID }}
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          _dockerfilePathKey_: _dockerfilePath_
+          registryUrl: 
+          registryUsername: ${{ secrets.PHONGVIAPIS_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.PHONGVIAPIS_REGISTRY_PASSWORD }}
+          containerAppName: phongvi-apis
+          resourceGroup: phongvi
+          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
+          _buildArgumentsKey_: |
+            _buildArgumentsValues_
+
+
