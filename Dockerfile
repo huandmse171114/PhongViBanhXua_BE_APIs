@@ -1,11 +1,8 @@
-# Stage 1: Build the application
-FROM maven:3.8.3-openjdk-17-slim
-WORKDIR /home/app
-COPY . /home/app
-RUN mvn -f /home/app/pom.xml clean package
+FROM maven:3-eclipse-temurin-17-alpine AS build
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Stage 2: Run the application
-FROM openjdk:17-jdk-slim
-COPY --from=build /home/app/target/*.jar /usr/local/lib/app.jar
-EXPOSE 80
-ENTRYPOINT ["java", "-jar", "/usr/local/lib/app.jar"]
+FROM  eclipse-temurin:17-jdk-alpine
+COPY --from=build /target/*.jar inkmelo.jar
+EXPOSE 8080
+ENTRYPOINT [ "java","-jar","inkmelo.jar" ]
