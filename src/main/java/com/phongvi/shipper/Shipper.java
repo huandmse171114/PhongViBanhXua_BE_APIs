@@ -40,10 +40,15 @@ public class Shipper {
 			length = 12)
 	private String idNumber;
 	
-	@Column(nullable = false,
+	@Column(nullable = true,
 			unique = true,
 			length = 10)
 	private String phone;
+	
+	@Column(nullable = false,
+			unique = true,
+			length = 100)
+	private String email;
 	
 	private Date dateOfBirth;
 	
