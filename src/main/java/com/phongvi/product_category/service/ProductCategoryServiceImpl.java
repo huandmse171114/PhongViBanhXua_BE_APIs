@@ -31,7 +31,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 	private final ProductCategoryRepository repository;
 	private final ProductCategoryMappingService mappingService;
 	private final int DEFAULT_PAGE = 0;
-	private final int DEFAULT_SIZE = 150; //large number of records ~ get all records
+	private final int DEFAULT_SIZE = 150;  
 
 	@Override
 	public ResponseEntity<?> getAllProductCategoryByStatus(ProductCategoryStatus status, Integer page, Integer size,

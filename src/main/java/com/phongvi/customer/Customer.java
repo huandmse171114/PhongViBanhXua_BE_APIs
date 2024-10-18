@@ -42,7 +42,12 @@ public class Customer {
 			length = 150)
 	private String fullname;
 	
-	@Column(nullable = false,
+	@Column(length = 100,
+			unique = true,
+			nullable = false)
+	private String email;
+	
+	@Column(nullable = true,
 			unique = true,
 			length = 10)
 	private String phone;

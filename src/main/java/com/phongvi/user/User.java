@@ -46,10 +46,15 @@ public class User implements UserDetails{
 			length = 150)
 	private String email;
 	
-	@Column(nullable = false,
+	@Column(length = 150)
+	private String fullname;
+	
+	@Column(nullable = true,
 			unique = true,
 			length = 10)
 	private String phone;
+	
+	private String profileImg;
 	
 	private String resetPwdToken;
 	

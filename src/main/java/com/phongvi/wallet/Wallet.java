@@ -34,12 +34,12 @@ public class Wallet {
 	@Column(nullable = false)
 	private int balance;
 	
-	@Column(nullable = false,
+	@Column(
 			unique = true,
 			length = 100)
 	private String LinkedAccountNumber;
 	
-	@Column(nullable = false,
+	@Column(
 			length = 100)
 	private String LinkedAccountOwnerName;
 	
