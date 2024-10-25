@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.phongvi.exception.NoProductCategoryFoundException;
+import com.phongvi.product.dto.CategoryProductResponseDTO;
 import com.phongvi.product_category.ProductCategory;
 import com.phongvi.product_category.ProductCategoryRepository;
 import com.phongvi.product_category.ProductCategoryStatus;
@@ -93,4 +94,16 @@ public class ProductCategoryMappingService {
 				.status(ProductCategoryStatus.ACTIVE)
 				.build();
 	}
+	
+	public CategoryProductResponseDTO productCategoryToCategoryProductResponseDTO(ProductCategory category) {
+		return CategoryProductResponseDTO.builder()
+				.id(category.getId())
+				.name(category.getName())
+				.description(category.getDescription())
+				.categoryImg(category.getCategoryImg())
+				.status(category.getStatus())
+				.build();
+	}
+	
+	
 }

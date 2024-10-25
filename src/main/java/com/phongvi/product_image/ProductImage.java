@@ -6,6 +6,8 @@ import com.phongvi.product.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -37,7 +39,8 @@ public class ProductImage {
 	
 	private String description;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
+	@Enumerated(EnumType.STRING)
 	private ProductImageStatus status;
 	
 	@Column(nullable = false,
@@ -59,4 +62,10 @@ public class ProductImage {
 	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return status.toString() + source;
+	}
 }

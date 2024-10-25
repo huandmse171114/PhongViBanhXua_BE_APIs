@@ -2,12 +2,14 @@ package com.phongvi.cart_item;
 
 import java.sql.Timestamp;
 
-import com.phongvi.cart.Cart;
 import com.phongvi.combo.Combo;
+import com.phongvi.customer.Customer;
 import com.phongvi.product.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -36,10 +38,12 @@ public class CartItem {
 	
 	@Column(nullable = false,
 			length = 50)
+	@Enumerated(EnumType.STRING)
 	private CartItemType type;
 
 	@Column(nullable = false,
 			length = 50)
+	@Enumerated(EnumType.STRING)
 	private CartItemStatus status;
 	
 	@Column(nullable = false,
@@ -59,8 +63,8 @@ public class CartItem {
 	private String lastChangedBy;
 	
 	@ManyToOne
-	@JoinColumn(name = "cart_id", nullable = false)
-	private Cart cart;
+	@JoinColumn(name = "customer_id", nullable = false)
+	private Customer customer;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id", nullable = true)

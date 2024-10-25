@@ -6,6 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.phongvi.exception.NoProductCategoryFoundException;
+import com.phongvi.product.dto.SupplierProductResponseDTO;
 import com.phongvi.product_category.ProductCategory;
 import com.phongvi.product_category.ProductCategoryRepository;
 import com.phongvi.product_category.service.ProductCategoryMappingService;
@@ -119,4 +120,20 @@ public class SupplierMappingService {
 				.lastChangedBy(SecurityContextHolder.getContext().getAuthentication().getName())
 				.build();
 	}
+	
+	public SupplierProductResponseDTO supplierToSupplierProductResponseDTO(Supplier supplier) {
+		return SupplierProductResponseDTO.builder()
+				.id(supplier.getId())
+				.name(supplier.getName())
+				.ownerName(supplier.getOwnerName())
+				.phone(supplier.getPhone())
+				.street(supplier.getStreet())
+				.ward(supplier.getWard())
+				.district(supplier.getDistrict())
+				.province(supplier.getProvince())
+				.openedTime(supplier.getOpenedTime())
+				.closedTime(supplier.getClosedTime())
+				.build();
+	}
+	
 }
