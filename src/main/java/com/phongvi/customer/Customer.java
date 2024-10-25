@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
-import com.phongvi.cart.Cart;
+import com.phongvi.cart_item.CartItem;
 import com.phongvi.comment.Comment;
 import com.phongvi.order.Order;
 import com.phongvi.shipment.Shipment;
@@ -14,6 +14,8 @@ import com.phongvi.wallet.Wallet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -55,12 +57,14 @@ public class Customer {
 	private Date dateOfBirth;
 	
 	@Column(length = 50)
+	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	
 	private String profileImg;
 	
 	@Column(nullable = false,
 			length = 50)
+	@Enumerated(EnumType.STRING)
 	private CustomerStatus status;
 	
 	@Column(nullable = false,
@@ -79,12 +83,12 @@ public class Customer {
 			length = 50)
 	private String lastChangedBy;
 	
-	@OneToOne(mappedBy = "customer")
-	private Cart cart;
-	
 	@OneToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<CartItem> cartItems;
 	
 	@OneToMany(mappedBy = "customer")
 	private List<Comment> comments;

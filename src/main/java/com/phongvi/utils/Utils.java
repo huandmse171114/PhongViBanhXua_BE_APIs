@@ -33,6 +33,14 @@ public class Utils {
 		
 		return new ResponseEntity<>(response, status);
 	}
+	
+	public static ResponseEntity<?> generateObjectResponseEntity(Object object, HttpStatus status) {
+		return new ResponseEntity<>(ObjectResponseDTO.builder()
+				.data(object)
+				.status(status.value())
+				.timestamp(getCurrentTimestamp())
+				.build(), status);
+	}
 
 	public static Timestamp stringToTimestamp(String date) {
 		

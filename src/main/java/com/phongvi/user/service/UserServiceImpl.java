@@ -1,9 +1,8 @@
 package com.phongvi.user.service;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.phongvi.cart.Cart;
-import com.phongvi.cart.CartRepository;
 import com.phongvi.customer.Customer;
 import com.phongvi.customer.CustomerRepository;
 import com.phongvi.customer.service.CustomerMappingService;
@@ -15,8 +14,10 @@ import com.phongvi.user.User;
 import com.phongvi.user.UserRepository;
 import com.phongvi.user.UserRole;
 import com.phongvi.user.dto.UserCreateDTO;
+import com.phongvi.utils.Utils;
 import com.phongvi.wallet.Wallet;
 import com.phongvi.wallet.WalletRepository;
+import com.phongvi.wallet.WalletStatus;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +30,6 @@ public class UserServiceImpl implements UserService {
 	private final ShipperMappingService shipperMappingService;
 	private final CustomerRepository customerRepository;
 	private final ShipperRepository shipperRepository;
-	private final CartRepository cartRepository;
 	private final WalletRepository walletRepository;
 	
 	
@@ -41,12 +41,6 @@ public class UserServiceImpl implements UserService {
 			Customer customer = customerMappingService.userToCustomer(userDB);
 			
 			Customer customerDB = customerRepository.save(customer);
-			
-			Cart cart = Cart.builder()
-					.customer(customerDB)
-					.build();
-			
-			cartRepository.save(cart);
 			
 			Wallet wallet = Wallet.builder()
 					.customer(customerDB)
@@ -78,14 +72,13 @@ public class UserServiceImpl implements UserService {
 			
 			Customer customerDB = customerRepository.save(customer);
 			
-			Cart cart = Cart.builder()
-					.customer(customerDB)
-					.build();
-			
-			cartRepository.save(cart);
-			
 			Wallet wallet = Wallet.builder()
 					.customer(customerDB)
+					.createdAt(Utils.getCurrentTimestamp())
+					.createdBy(SecurityContextHolder.getContext().getAuthentication().getName())
+					.lastChangedAt(Utils.getCurrentTimestamp())
+					.lastChangedBy(SecurityContextHolder.getContext().getAuthentication().getName())
+					.status(WalletStatus.ACTIVE)
 					.build();
 			
 			walletRepository.save(wallet);

@@ -2,6 +2,7 @@ package com.phongvi.supplier;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,4 +37,6 @@ public interface SupplierRepository extends JpaRepository<Supplier, Long> {
 		String ward, String district, String province, 
 		Pageable pageable
 	);
+	
+	List<Supplier> findAllByNameContainingIgnoreCase(String name);
 }
