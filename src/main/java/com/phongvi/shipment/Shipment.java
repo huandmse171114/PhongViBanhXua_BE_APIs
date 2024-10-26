@@ -31,6 +31,9 @@ public class Shipment {
 	@GeneratedValue
 	private Long id;
 	
+	@Column(nullable = false)
+	private boolean isDefault;
+	
 	@Column(nullable = false,
 			length = 100)
 	private String receiverName;
