@@ -36,32 +36,32 @@ public class Order {
 	@GeneratedValue
 	private Long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Time expectedDeliveryTime;
 	
-	@Column(nullable = false,
+	@Column(nullable = true,
 			length = 50)
 	private String district;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer districtId;
 	
-	@Column(nullable = false,
+	@Column(nullable = true,
 			length = 50)
 	private String ward;
 	
-	@Column(nullable = false,
+	@Column(nullable = true,
 			length = 20)
 	private String wardCode;
 	
-	@Column(nullable = false,
+	@Column(nullable = true,
 			length = 50)
 	private String province;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer provinceId;
 	
-	@Column(nullable = false,
+	@Column(nullable = true,
 			length = 100)
 	private String street;
 	
@@ -90,6 +90,18 @@ public class Order {
 			length = 50)
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
+	
+	@Column(nullable = false,
+			length = 50)
+	private OrderPaymentStatus paymentStatus;
+
+	@Column(nullable = false,
+			length = 50)
+	private OrderPaymentType paymentType;
+	
+	@Column(nullable = false,
+			length = 50)
+	private OrderShippingType shippingType;
 	
 	@Column(nullable = false,
 			updatable = false)

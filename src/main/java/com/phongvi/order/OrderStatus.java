@@ -1,6 +1,8 @@
 package com.phongvi.order;
 
 public enum OrderStatus {
-	ACTIVE,
-	INACTIVE
+	CREATED,
+	DELIVERING,
+	FINISHED,
+	CANCEL
 }

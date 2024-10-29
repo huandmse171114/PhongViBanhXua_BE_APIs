@@ -10,7 +10,7 @@ public record CartItemComboResponse(
 			Long id,
 			String name,
 			Long price,
-			Integer discountPercent,
+			Long discountPrice,
 			Date discountExpiry,
 			List<CartItemComboItemResponse> items
 		) {

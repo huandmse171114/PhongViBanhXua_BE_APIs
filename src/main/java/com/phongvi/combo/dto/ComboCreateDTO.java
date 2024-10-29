@@ -6,12 +6,9 @@ import java.util.List;
 
 import com.phongvi.combo.ComboStatus;
 import com.phongvi.combo_item.dto.ComboItemAdminResponseDTO;
+import com.phongvi.combo_item.dto.ComboItemComboCreateDTO;
 
-import lombok.Builder;
-
-@Builder
-public record ComboAdminResponseDTO(
-			Long id,
+public record ComboCreateDTO(
 			String name,
 			String description,
 			Long price,
@@ -20,12 +17,7 @@ public record ComboAdminResponseDTO(
 			int totalRating,
 			double averageStar,
 			Integer dailyStock,
-			ComboStatus status,
-			Timestamp createdAt,
-			String createdBy,
-			Timestamp lastChangedAt,
-			String lastChangedBy,
-			List<ComboItemAdminResponseDTO> items
+			List<ComboItemComboCreateDTO> items
 		) {
 
 }

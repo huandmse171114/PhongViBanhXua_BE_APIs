@@ -1,7 +1,8 @@
 package com.phongvi.utils;
 
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -9,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 
 public class Utils {
 	public static Timestamp getCurrentTimestamp() {
-		var date = new Date();
+		var date = new java.util.Date();
 		var timestamp = new Timestamp(date.getTime());
 		return timestamp;
 	}
@@ -52,4 +53,13 @@ public class Utils {
 		
 		return Timestamp.valueOf(date);
 	}
+	
+	 public static Date getNextDay(Date date) {
+	        // Convert java.sql.Date to LocalDate
+	        LocalDate localDate = date.toLocalDate();
+	        // Add one day
+	        LocalDate nextDay = localDate.plusDays(1);
+	        // Convert LocalDate back to java.sql.Date
+	        return Date.valueOf(nextDay);
+	    }
 }

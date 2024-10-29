@@ -9,7 +9,7 @@ public record ProductUpdateDTO(
 			String name,
 			String description,
 			Long price,
-			Integer discountPercent,
+			Long discountPrice,
 			Date discountExpiry,
 			Integer calories,
 			Integer dailyStock,

@@ -29,9 +29,9 @@ public class ShipmentMappingService {
 				.province("Ho Chi Minh")
 				.provinceId(1293483)
 				.createdAt(Utils.getCurrentTimestamp())
-				.createdBy(SecurityContextHolder.getContext().getAuthentication().getName())
+				.createdBy("")
 				.lastChangedAt(Utils.getCurrentTimestamp())
-				.lastChangedBy(SecurityContextHolder.getContext().getAuthentication().getName())
+				.lastChangedBy("")
 				.status(ShipmentStatus.ACTIVE)
 				.build();
 	}

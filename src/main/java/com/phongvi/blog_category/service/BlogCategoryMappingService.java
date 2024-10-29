@@ -1,6 +1,5 @@
 package com.phongvi.blog_category.service;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.phongvi.blog_category.BlogCategory;
@@ -44,9 +43,9 @@ public class BlogCategoryMappingService {
 				.name(blogCategoryDTO.name())
 				.description(blogCategoryDTO.description())
 				.createdAt(Utils.getCurrentTimestamp())
-				.createdBy(SecurityContextHolder.getContext().getAuthentication().getName())
+				.createdBy("")
 				.lastChangedAt(Utils.getCurrentTimestamp())
-				.lastChangedBy(SecurityContextHolder.getContext().getAuthentication().getName())
+				.lastChangedBy("")
 				.status(BlogCategoryStatus.ACTIVE)
 				.build();
 	}
