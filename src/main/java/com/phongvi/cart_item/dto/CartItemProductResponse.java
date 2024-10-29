@@ -9,7 +9,7 @@ public record CartItemProductResponse(
 			Long id,
 			String name,
 			Long price,
-			Integer discountPercent,
+			Long discountPrice,
 			Date discountExpiry,
 			Integer calories,
 			String firstImageUrl

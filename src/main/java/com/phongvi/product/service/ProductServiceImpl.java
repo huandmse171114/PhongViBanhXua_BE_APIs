@@ -289,7 +289,7 @@ public class ProductServiceImpl implements ProductService {
 		product.setName(productDTO.name());
 		product.setDescription(productDTO.description());
 		product.setPrice(productDTO.price());
-		product.setDiscountPercent(productDTO.discountPercent());
+		product.setDiscountPrice(productDTO.discountPrice());
 		product.setDiscountExpiry(productDTO.discountExpiry());
 		product.setCalories(productDTO.calories());
 		product.setDailyStock(productDTO.dailyStock());

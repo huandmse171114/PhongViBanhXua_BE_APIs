@@ -14,7 +14,7 @@ public record ProductAdminResponseDTO(
 			String name,
 			String description,
 			Long price,
-			Integer discountPercent,
+			Long discountPrice,
 			Date discountExpiry,
 			Integer calories,
 			int totalRating,

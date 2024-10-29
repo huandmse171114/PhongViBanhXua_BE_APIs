@@ -36,11 +36,9 @@ public class ProductImageMappingService {
 				.description(imageDTO.description())
 				.status(ProductImageStatus.ACTIVE)
 				.createdAt(Utils.getCurrentTimestamp())
-				.createdBy(SecurityContextHolder.getContext()
-						.getAuthentication().getName())
+				.createdBy("")
 				.lastChangedAt(Utils.getCurrentTimestamp())
-				.lastChangedBy(SecurityContextHolder.getContext()
-						.getAuthentication().getName())
+				.lastChangedBy("")
 				.build();
 	}
 
@@ -51,11 +49,9 @@ public class ProductImageMappingService {
 				.description(imageDTO.description())
 				.status(ProductImageStatus.ACTIVE)
 				.createdAt(Utils.getCurrentTimestamp())
-				.createdBy(SecurityContextHolder.getContext()
-						.getAuthentication().getName())
+				.createdBy("")
 				.lastChangedAt(Utils.getCurrentTimestamp())
-				.lastChangedBy(SecurityContextHolder.getContext()
-						.getAuthentication().getName())
+				.lastChangedBy("")
 				.build();
 	}
 	

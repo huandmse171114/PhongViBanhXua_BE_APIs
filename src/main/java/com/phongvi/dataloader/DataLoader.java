@@ -1,7 +1,9 @@
 package com.phongvi.dataloader;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.boot.CommandLineRunner;
@@ -11,22 +13,35 @@ import org.springframework.stereotype.Component;
 import com.phongvi.blog_category.BlogCategory;
 import com.phongvi.blog_category.BlogCategoryRepository;
 import com.phongvi.blog_category.BlogCategoryStatus;
+import com.phongvi.cart_item.service.CartItemService;
+import com.phongvi.product.dto.ProductCreateDTO;
+import com.phongvi.product.dto.ProductImageProductCreateDTO;
+import com.phongvi.product.service.ProductService;
+import com.phongvi.product.service.ProductServiceImpl;
 import com.phongvi.product_category.ProductCategory;
 import com.phongvi.product_category.ProductCategoryRepository;
 import com.phongvi.product_category.ProductCategoryStatus;
+import com.phongvi.shipment.service.ShipmentService;
+import com.phongvi.shipment.service.ShipmentServiceImpl;
 import com.phongvi.supplier.Supplier;
 import com.phongvi.supplier.SupplierRepository;
 import com.phongvi.supplier.SupplierStatus;
+import com.phongvi.user.service.UserService;
+import com.phongvi.user.service.UserServiceImpl;
 import com.phongvi.utils.Utils;
 
 import lombok.RequiredArgsConstructor;
 
 @Component
-@Profile(value = "dev")
+@Profile(value = "devv")
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 	private final ProductCategoryRepository productCategoryRepository;
 	private final SupplierRepository supplierRepository;
+	private final UserService userService;
+	private final ProductService productService;
+	private final ShipmentService shipmentService;
+	private final CartItemService cartItemService;
 	private final BlogCategoryRepository blogCategoryRepository;
 	private List<Long> productCategoriesId = new ArrayList<>();
 	
@@ -399,8 +414,64 @@ public class DataLoader implements CommandLineRunner {
 				.categories(productCategoryRepository.findAllByIdIn(productCategoriesId))
 				.build());
 	
+		// ==================================================================== Add product data ================================================================
+		List<ProductImageProductCreateDTO> images = new ArrayList<>();
+		List<Long> categoriesId = new ArrayList<>();
+		
+		// ============================================================ Bánh bò hấp ===================================================================================
+		
+		images.clear();
+		images.add(ProductImageProductCreateDTO.builder()
+				.index(0)
+				.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_bo_hap.png?alt=media&token=1fad5bfe-6d34-4a24-9329-c51a786bcaee")
+				.description("Ảnh bánh bò hấp")
+				.build());
+		
+		categoriesId.clear();
+		categoriesId.add(1L);
+		categoriesId.add(2L);
+		
+		productService.saveProduct(ProductCreateDTO.builder()
+				.name("Bánh Bò Hấp")
+				.description("Bánh bò hấp truyền thống, thơm nhẹ mùi dừa, mềm xốp với vị ngọt thanh từ nước cốt dừa. Màu sắc tự nhiên từ lá dứa, lá cẩm, mang đến hương vị dân dã nhưng hấp dẫn. Thích hợp cho các dịp lễ Tết hay những buổi họp mặt gia đình.")
+				.price(19000L)
+				.discountPrice(15000L)
+				.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+				.calories(82)
+				.dailyStock(20)
+				.images(images)
+				.categories(categoriesId)
+				.supplier(1L)
+				.build());
+		
+
+		// ============================================================ Bánh Bò Nướng ===================================================================================
+		
+		images.clear();
+		images.add(ProductImageProductCreateDTO.builder()
+				.index(0)
+				.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_bo_nuong.png?alt=media&token=8fe5323a-e448-4a03-9772-276b9cd6400e")
+				.description("Ảnh bánh bò nướng")
+				.build());
+		
+		categoriesId.clear();
+		categoriesId.add(3L);
+		categoriesId.add(5L);
+		
+		productService.saveProduct(ProductCreateDTO.builder()
+				.name("Bánh Bò Nướng")
+				.description("Bánh bò nướng với lớp vỏ nâu bóng giòn, bên trong mềm, dai và có mùi thơm đặc trưng của nước cốt dừa. Thớ bánh rỗ xốp độc đáo tạo cảm giác thú vị khi thưởng thức.")
+				.price(22000L)
+				.discountPrice(18000L)
+				.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+				.calories(115)
+				.dailyStock(20)
+				.images(images)
+				.categories(categoriesId)
+				.supplier(2L)
+				.build());
+		
+
 	}
-	
-	
 	
 }

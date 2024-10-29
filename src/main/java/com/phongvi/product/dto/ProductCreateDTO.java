@@ -5,11 +5,14 @@ import java.util.List;
 
 import com.phongvi.product.ProductStatus;
 
+import lombok.Builder;
+
+@Builder
 public record ProductCreateDTO(
 			String name,
 			String description,
 			Long price,
-			Integer discountPercent,
+			Long discountPrice,
 			Date discountExpiry,
 			Integer calories,
 			Integer dailyStock,

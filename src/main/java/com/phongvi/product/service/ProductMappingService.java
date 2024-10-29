@@ -12,6 +12,7 @@ import com.phongvi.exception.NoSupplierFoundException;
 import com.phongvi.product.Product;
 import com.phongvi.product.ProductStatus;
 import com.phongvi.product.dto.ProductAdminResponseDTO;
+import com.phongvi.product.dto.ProductComboItemAdminResponseDTO;
 import com.phongvi.product.dto.ProductCreateDTO;
 import com.phongvi.product.dto.ProductResponseDTO;
 import com.phongvi.product_category.ProductCategory;
@@ -43,7 +44,7 @@ public class ProductMappingService {
 				.name(product.getName())
 				.description(product.getDescription())
 				.price(product.getPrice())
-				.discountPercent(product.getDiscountPercent())
+				.discountPrice(product.getDiscountPrice())
 				.discountExpiry(product.getDiscountExpiry())
 				.calories(product.getCalories())
 				.totalRating(product.getTotalRating())
@@ -73,7 +74,7 @@ public class ProductMappingService {
 				.name(product.getName())
 				.description(product.getDescription())
 				.price(product.getPrice())
-				.discountPercent(product.getDiscountPercent())
+				.discountPrice(product.getDiscountPrice())
 				.discountExpiry(product.getDiscountExpiry())
 				.calories(product.getCalories())
 				.totalRating(product.getTotalRating())
@@ -118,17 +119,15 @@ public class ProductMappingService {
 				.name(productDTO.name())
 				.description(productDTO.description())
 				.price(productDTO.price())
-				.discountPercent(productDTO.discountPercent())
+				.discountPrice(productDTO.discountPrice())
 				.discountExpiry(productDTO.discountExpiry())
 				.calories(productDTO.calories())
 				.dailyStock(productDTO.dailyStock())
 				.status(ProductStatus.ACTIVE)
 				.createdAt(Utils.getCurrentTimestamp())
-				.createdBy(SecurityContextHolder.getContext()
-						.getAuthentication().getName())
+				.createdBy("")
 				.lastChangedAt(Utils.getCurrentTimestamp())
-				.lastChangedBy(SecurityContextHolder.getContext()
-						.getAuthentication().getName())
+				.lastChangedBy("")
 				.images(newProductImages)
 				.supplier(supplier)
 				.categories(categories)
@@ -140,11 +139,35 @@ public class ProductMappingService {
 				.id(product.getId())
 				.name(product.getName())
 				.price(product.getPrice())
-				.discountPercent(product.getDiscountPercent())
+				.discountPrice(product.getDiscountPrice())
 				.discountExpiry(product.getDiscountExpiry())
 				.calories(product.getCalories())
 				.firstImageUrl(product.getImages() != null && !product.getImages().isEmpty()
 						? product.getImages().get(0).getSource() : null)
+				.build();
+	}
+	
+	public ProductComboItemAdminResponseDTO productToProductComboItemAdminResponseDTO(Product product) {
+		return ProductComboItemAdminResponseDTO.builder()
+				.id(product.getId())
+				.name(product.getName())
+				.description(product.getDescription())
+				.price(product.getPrice())
+				.discountExpiry(product.getDiscountExpiry())
+				.discountPrice(product.getDiscountPrice())
+				.calories(product.getCalories())
+				.totalRating(product.getTotalRating())
+				.averageStar(product.getAverageStar())
+				.images(product.getImages().stream()
+						.map(image -> imageMappingService
+								.productImageToProductImageProductResponseDTO(image))
+								.toList())
+				.categories(product.getCategories().stream()
+						.map(category -> 
+						categoryMappingService
+								.productCategoryToCategoryProductResponseDTO(category))
+						.toList())
+				.supplier(supplierMappingService.supplierToSupplierProductResponseDTO(product.getSupplier()))
 				.build();
 	}
 }

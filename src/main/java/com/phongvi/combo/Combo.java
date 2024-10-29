@@ -41,7 +41,7 @@ public class Combo {
 	@Column(nullable = false)
 	private Long price;
 	
-	private Integer discountPercent;
+	private Long discountPrice;
 	
 	private Date discountExpiry;
 	
