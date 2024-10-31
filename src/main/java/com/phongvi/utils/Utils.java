@@ -58,7 +58,7 @@ public class Utils {
 	        // Convert java.sql.Date to LocalDate
 	        LocalDate localDate = date.toLocalDate();
 	        // Add one day
-	        LocalDate nextDay = localDate.plusDays(1);
+	        LocalDate nextDay = localDate.plusDays(30);
 	        // Convert LocalDate back to java.sql.Date
 	        return Date.valueOf(nextDay);
 	    }

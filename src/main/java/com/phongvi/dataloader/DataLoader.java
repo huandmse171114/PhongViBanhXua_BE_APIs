@@ -461,8 +461,8 @@ public class DataLoader implements CommandLineRunner {
 		productService.saveProduct(ProductCreateDTO.builder()
 				.name("Bánh Bò Nướng")
 				.description("Bánh bò nướng với lớp vỏ nâu bóng giòn, bên trong mềm, dai và có mùi thơm đặc trưng của nước cốt dừa. Thớ bánh rỗ xốp độc đáo tạo cảm giác thú vị khi thưởng thức.")
-				.price(22000L)
-				.discountPrice(18000L)
+				.price(25000L)
+				.discountPrice(21000L)
 				.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
 				.calories(115)
 				.dailyStock(20)
@@ -471,7 +471,372 @@ public class DataLoader implements CommandLineRunner {
 				.supplier(2L)
 				.build());
 		
+		// ============================================================ Banh Cam ===================================================================================
+		
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_cam.png?alt=media&token=8dfe57be-2e7e-4db7-b850-5001f1c73efd")
+						.description("Ảnh bánh cam")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(1L);
+				categoriesId.add(3L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Cam")
+						.description("Bánh cam giòn rụm, vỏ ngoài vàng nâu giòn tan với nhân đậu xanh ngọt mịn, là món ăn vặt dân dã đặc trưng.")
+						.price(25000L)
+						.discountPrice(21000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(115)
+						.dailyStock(40)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+				// ============================================================ Bánh Chuối Nướng ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_chuoi_nuong.png?alt=media&token=1b723689-3643-4116-b354-30a71af961f9")
+						.description("Ảnh bánh chuối nướng")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(4L);
+				categoriesId.add(3L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Chuối Nướng")
+						.description("Bánh chuối nướng có vị ngọt tự nhiên từ chuối, thơm mùi nước cốt dừa, và lớp vỏ nâu giòn bên ngoài. Thích hợp cho các dịp lễ hội và những ai yêu thích món ngọt truyền thống.")
+						.price(18000L)
+						.discountPrice(15000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(300)
+						.dailyStock(10)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Da Lợn ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_da_lon.png?alt=media&token=94f9216e-83c8-4567-82b9-80f4f6448bf8")
+						.description("Ảnh bánh da lợn")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Da Lợn")
+						.description("Bánh da lợn được làm từ bột năng và đậu xanh, từng lớp bánh mỏng dẻo, thơm ngọt, thường có màu xanh từ lá dứa và trắng từ nước cốt dừa.")
+						.price(18000L)
+						.discountPrice(16000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(100)
+						.dailyStock(50)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Đậu Xanh Hình Trái Cây ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_dau_xanh_hinh_trai_cay.png?alt=media&token=c2e4af2f-5204-433e-9d42-4eb6551f7a88")
+						.description("Ảnh bánh đậu xanh hình trái cây")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Đậu Xanh Hình Trái Cây")
+						.description("Bánh đậu xanh tạo hình trái cây nhiều màu sắc, nhân đậu xanh bùi ngọt, mang lại cảm giác vừa ngon miệng vừa vui mắt.")
+						.price(5000L)
+						.discountPrice(3000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Đúc Gân ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_duc_gan.png?alt=media&token=ad663936-9aa3-4b1a-b81f-e69506861b0d")
+						.description("Ảnh bánh đúc gân")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Đúc Gân")
+						.description("Bánh đúc gân có lớp bánh mềm mịn, với từng tầng màu sắc xen kẽ từ lá dứa và đậu xanh. Hương vị ngọt bùi, thơm phức cùng chút béo ngậy từ nước cốt dừa.")
+						.price(19000L)
+						.discountPrice(17000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Đúc Gân Tam Sắc ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_duc_gan.png?alt=media&token=ad663936-9aa3-4b1a-b81f-e69506861b0d")
+						.description("Ảnh bánh đúc gân tam sắc")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Đúc Gân Tam Sắc")
+						.description("Bánh đúc gân tam sắc với ba màu tự nhiên xanh, vàng, và trắng xen kẽ tạo thành lớp vân độc đáo. Bánh mềm mịn, thơm mùi nước cốt dừa và lá dứa, đậu xanh. Hương vị ngọt thanh, vừa mềm vừa dai, là lựa chọn lý tưởng cho các dịp lễ hoặc thưởng thức hàng ngày.")
+						.price(20000L)
+						.discountPrice(18000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Bò Xốp Lá Dứa ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_duc_gan.png?alt=media&token=ad663936-9aa3-4b1a-b81f-e69506861b0d")
+						.description("Ảnh bánh bò xốp lá dứa")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Bò Xốp Lá Dứa")
+						.description("Bánh bò xốp lá dứa mềm mịn với màu xanh mướt từ lá dứa tự nhiên, mang hương thơm dịu nhẹ và vị ngọt thanh từ nước cốt dừa. Bánh có kết cấu xốp rễ tre đặc trưng, tan chảy trong miệng với mỗi miếng cắn. Thích hợp cho các buổi họp mặt hoặc làm món tráng miệng dân dã.")
+						.price(20000L)
+						.discountPrice(18000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Lá Mơ ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_la_mo.png?alt=media&token=e90fe6ef-8d15-4452-a71a-ca4d198d4101")
+						.description("Ảnh bánh lá mơ")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Lá Mơ")
+						.description("Bánh lá mơ được gói trong lá chuối, có hương vị thơm ngậy của nước cốt dừa và gạo nếp, ăn kèm với muối vừng tạo nên vị mặn ngọt hài hòa.")
+						.price(20000L)
+						.discountPrice(18000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Đúc Lạc ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_la_mo.png?alt=media&token=e90fe6ef-8d15-4452-a71a-ca4d198d4101")
+						.description("Ảnh bánh đúc lạc")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Đúc Lạc")
+						.description("Bánh đúc lạc là món ăn dân dã với lớp bánh trắng mịn từ bột gạo, điểm thêm những hạt lạc bùi béo thơm ngon. Bánh mềm, dẻo vừa phải, có vị ngọt nhẹ, thường ăn kèm với muối vừng hoặc nước mắm pha tạo nên hương vị hài hòa và hấp dẫn.")
+						.price(20000L)
+						.discountPrice(18000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Ú ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_u.png?alt=media&token=5edf6e6a-b5e7-4770-a7d5-268ce88cc290")
+						.description("Ảnh bánh ú")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Ú")
+						.description("Bánh ú nhân đậu xanh, nếp dẻo thơm, được gói lá chuối vuông vắn, thường xuất hiện trong các dịp lễ cúng.")
+						.price(19000L)
+						.discountPrice(17000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh In ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_u.png?alt=media&token=5edf6e6a-b5e7-4770-a7d5-268ce88cc290")
+						.description("Ảnh bánh in")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh In")
+						.description("Bánh in là món bánh truyền thống với lớp bột trắng mịn, mềm tan trong miệng, thường có hương vị ngọt dịu và thơm mùi hoa bưởi hoặc dừa. Bánh được in khuôn với nhiều hoa văn đẹp mắt, là món bánh không thể thiếu trong các dịp lễ Tết hay cúng gia tiên.")
+						.price(21000L)
+						.discountPrice(19000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+// ============================================================ Bánh Tét Chuối ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_tet_chuoi.png?alt=media&token=c56670c0-1005-42bc-a0d2-3c65346fc582")
+						.description("Ảnh bánh tét chuối")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Tét Chuối")
+						.description("Bánh tét chuối với hương vị ngọt nhẹ, nhân chuối đỏ và lớp nếp dẻo thơm, là món bánh truyền thống vào dịp Tết.")
+						.price(21000L)
+						.discountPrice(19000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
 
+// ============================================================ Bánh Tét Chuối ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_tet_chuoi.png?alt=media&token=c56670c0-1005-42bc-a0d2-3c65346fc582")
+						.description("Ảnh bánh chuối hấp thốt nốt")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Chuối Hấp Thốt Nốt")
+						.description("Bánh chuối hấp thốt nốt với màu vàng nâu tự nhiên từ đường thốt nốt, thơm lừng hương chuối chín và nước cốt dừa béo ngậy. Bánh mềm mịn, ngọt dịu và có kết cấu dẻo dính đặc trưng, thường được phủ lớp nước cốt dừa mặn ngọt hài hòa, thích hợp làm món tráng miệng dân dã.")
+						.price(19000L)
+						.discountPrice(17000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
+				
+				
+// ============================================================ Bánh Khoai Mì Nướng Dừa Non ===================================================================================
+				
+				images.clear();
+				images.add(ProductImageProductCreateDTO.builder()
+						.index(0)
+						.source("https://firebasestorage.googleapis.com/v0/b/phongvibanhxua.appspot.com/o/cakes%2FPVBX__banh_tet_chuoi.png?alt=media&token=c56670c0-1005-42bc-a0d2-3c65346fc582")
+						.description("Ảnh bánh khoai mì nướng dừa non")
+						.build());
+				
+				categoriesId.clear();
+				categoriesId.add(2L);
+				categoriesId.add(6L);
+				
+				productService.saveProduct(ProductCreateDTO.builder()
+						.name("Bánh Khoai Mì Nướng Dừa Non")
+						.description("Bánh khoai mì nướng dừa non thơm ngọt tự nhiên với lớp vỏ giòn và bên trong mềm dẻo từ khoai mì bào. Thêm dừa non bùi béo, bánh mang hương vị đậm đà và mùi thơm ngậy của nước cốt dừa. Phù hợp cho các bữa ăn nhẹ hoặc món tráng miệng dân dã.")
+						.price(20000L)
+						.discountPrice(18000L)
+						.discountExpiry(Utils.getNextDay(java.sql.Date.valueOf(LocalDate.now())))
+						.calories(20)
+						.dailyStock(30)
+						.images(images)
+						.categories(categoriesId)
+						.supplier(3L)
+						.build());
 	}
+	
+	
 	
 }

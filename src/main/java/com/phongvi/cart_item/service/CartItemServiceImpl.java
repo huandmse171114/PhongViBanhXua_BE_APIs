@@ -117,6 +117,50 @@ public class CartItemServiceImpl implements CartItemService {
 			
 			Combo combo = comboOptional.get();
 			
+			Optional<CartItem> cartItemOptional = repository.findByCustomerAndCombo(customer, combo);
+			
+			if (cartItemOptional.isEmpty()) {
+				// Cart item chua co san trong database -> tao moi
+				if (cartItemDTO.quantity() > 0) {
+					// Quantity hop le
+					CartItem newCartItem = mappingService.cartItemDTOToCartItem(customer, cartItemDTO.quantity(), null, combo, cartItemDTO.type());
+					
+					repository.save(newCartItem);
+					
+					message = "Thêm vào giỏ hàng thành công";
+					
+				} else {
+					message = "Cập nhật giỏ hàng thất bại: số lượng không hợp lệ";
+				}
+			} else {
+				// Cart item co san trong database -> cap nhat quantity
+				CartItem cartItem = cartItemOptional.get();
+				
+				if (cartItemDTO.quantity() > 0) {
+					// Cap nhat quantity
+					cartItem.setQuantity(cartItemDTO.quantity());
+					cartItem.setLastChangedAt(Utils.getCurrentTimestamp());
+					cartItem.setStatus(CartItemStatus.ACTIVE); // Cap nhat lai status cho item inactive
+					
+					repository.save(cartItem);
+					
+					message = "Cập nhật giỏ hàng thành công";
+					
+				} else if (cartItemDTO.quantity() == 0) {
+					// Xoa cart item
+					cartItem.setQuantity(cartItemDTO.quantity());
+					cartItem.setLastChangedAt(Utils.getCurrentTimestamp());
+					cartItem.setStatus(CartItemStatus.INACTIVE); // Xoa item
+					
+					repository.save(cartItem);
+					
+					message = "Xóa khỏi giỏ hàng thành công";
+					
+				}else {
+					message = "Cập nhật giỏ hàng thất bại: số lượng không hợp lệ";
+				}
+			}
+			
 		}else {
 			
 			Optional<Product> productOptional = productRepository.findById(cartItemDTO.productId());

@@ -70,21 +70,24 @@ public class PayOSService {
 	}
 	
 	private Integer getPrice(CartItem item) {
-		if (item.getProduct().getDiscountExpiry().after(java.sql.Date.valueOf(LocalDate.now()))) {
-			// Has discount
-			if (item.getType() == CartItemType.COMBO) {
-				return Integer.parseInt("" + item.getCombo().getDiscountPrice());
-			} else {
+		if (item.getType() == CartItemType.PRODUCT) {
+			if (item.getProduct().getDiscountExpiry().after(java.sql.Date.valueOf(LocalDate.now()))) {
+				// Has discount
 				return Integer.parseInt("" + item.getProduct().getDiscountPrice());
-			}
-		} else {
-			// No discount
-			if (item.getType() == CartItemType.COMBO) {
-				return Integer.parseInt("" + item.getCombo().getPrice());
 			} else {
+				// No discount
 				return Integer.parseInt("" + item.getProduct().getPrice());
 			}
+		}else {
+			if (item.getCombo().getDiscountExpiry().after(java.sql.Date.valueOf(LocalDate.now()))) {
+				// Has discount
+				return Integer.parseInt("" + item.getCombo().getDiscountPrice());
+			} else {
+				// No discount
+				return Integer.parseInt("" + item.getCombo().getPrice());
+			}
 		}
+		
 	}
 	
 }

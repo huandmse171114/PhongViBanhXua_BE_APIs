@@ -1,12 +1,18 @@
 package com.phongvi.combo.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.phongvi.cart_item.dto.CartItemComboResponse;
 import com.phongvi.combo.Combo;
+import com.phongvi.combo.ComboStatus;
 import com.phongvi.combo.dto.ComboAdminResponseDTO;
+import com.phongvi.combo.dto.ComboCreateDTO;
 import com.phongvi.combo.dto.ComboResponseDTO;
 import com.phongvi.combo_item.service.ComboItemMappingService;
+import com.phongvi.utils.Utils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ComboMappingService {
 	
-	private ComboItemMappingService itemMappingService;
+	private final ComboItemMappingService itemMappingService;
 	
 	public CartItemComboResponse comboToCartItemComboResponse(Combo combo) {
 		return CartItemComboResponse.builder()
@@ -54,6 +60,7 @@ public class ComboMappingService {
 	}
 	
 	public ComboResponseDTO comboToComboResponseDTO(Combo combo) {
+		
 		return ComboResponseDTO.builder()
 				.id(combo.getId())
 				.name(combo.getName())
@@ -67,6 +74,23 @@ public class ComboMappingService {
 				.items(combo.getItems().stream()
 						.map(item -> itemMappingService.comboItemToComboItemResponseDTO(item))
 						.toList())
+				.build();
+	}
+
+	public Combo comboCreateDTOToCombo(ComboCreateDTO comboDTO) {
+		
+		return Combo.builder()
+				.name(comboDTO.name())
+				.description(comboDTO.description())
+				.price(comboDTO.price())
+				.discountPrice(comboDTO.discountPrice())
+				.discountExpiry(comboDTO.discountExpiry())
+				.dailyStock(comboDTO.dailyStock())
+				.createdAt(Utils.getCurrentTimestamp())
+				.createdBy("")
+				.lastChangedAt(Utils.getCurrentTimestamp())
+				.lastChangedBy("")
+				.status(ComboStatus.ACTIVE)
 				.build();
 	}
 
