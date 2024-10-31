@@ -202,12 +202,9 @@ public class ProductServiceImpl implements ProductService {
 		
 		Product productDB = repository.save(newProduct);
 		
-		// Return list of ProductImages that has generated ID
-		List<ProductImage> imagesDB = new ArrayList<>();
 		newProduct.getImages().forEach(image -> {
-			System.out.println(image);
 			image.setProduct(productDB);
-			imagesDB.add(imageRepository.save(image));
+			imageRepository.save(image);
 		});
 		
 		return Utils.generateMessageResponseEntity("Tạo mới sản phẩm thành công", HttpStatus.CREATED);

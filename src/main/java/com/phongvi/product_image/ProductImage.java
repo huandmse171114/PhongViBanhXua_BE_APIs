@@ -34,7 +34,8 @@ public class ProductImage {
 	@Column(nullable = false)
 	private Integer index;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,
+			length = 500)
 	private String source;
 	
 	private String description;

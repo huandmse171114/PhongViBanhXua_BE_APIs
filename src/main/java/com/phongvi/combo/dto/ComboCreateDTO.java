@@ -14,8 +14,6 @@ public record ComboCreateDTO(
 			Long price,
 			Long discountPrice,
 			Date discountExpiry,
-			int totalRating,
-			double averageStar,
 			Integer dailyStock,
 			List<ComboItemComboCreateDTO> items
 		) {

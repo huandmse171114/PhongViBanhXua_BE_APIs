@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.phongvi.cart_item.CartItem;
 import com.phongvi.cart_item.CartItemRepository;
 import com.phongvi.cart_item.CartItemStatus;
+import com.phongvi.cart_item.CartItemType;
 import com.phongvi.customer.Customer;
 import com.phongvi.customer.CustomerRepository;
 import com.phongvi.exception.NoCartItemFoundException;
@@ -66,12 +67,22 @@ public class OrderServiceImpl implements OrderService {
 		orderAmount = 0L;
 		
 		cartItems.forEach(item -> {
-			if (item.getProduct().getDiscountExpiry().after(Date.valueOf(LocalDate.now()))) {
-				orderAmount += 
-						item.getQuantity() * item.getProduct().getDiscountPrice();				
+			if (item.getType() == CartItemType.PRODUCT) {
+				if (item.getProduct().getDiscountExpiry().after(Date.valueOf(LocalDate.now()))) {
+					orderAmount += 
+							item.getQuantity() * item.getProduct().getDiscountPrice();				
+				} else {
+					orderAmount += 
+							item.getQuantity() * item.getProduct().getPrice();
+				}				
 			} else {
-				orderAmount += 
-						item.getQuantity() * item.getProduct().getPrice();
+				if (item.getCombo().getDiscountExpiry().after(Date.valueOf(LocalDate.now()))) {
+					orderAmount += 
+							item.getQuantity() * item.getCombo().getDiscountPrice();				
+				} else {
+					orderAmount += 
+							item.getQuantity() * item.getCombo().getPrice();
+				}	
 			}
 			
 		});

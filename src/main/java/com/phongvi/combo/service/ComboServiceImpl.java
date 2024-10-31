@@ -16,7 +16,14 @@ import com.phongvi.combo.ComboStatus;
 import com.phongvi.combo.dto.ComboAdminResponseDTO;
 import com.phongvi.combo.dto.ComboCreateDTO;
 import com.phongvi.combo.dto.ComboResponseDTO;
+import com.phongvi.combo_item.ComboItem;
+import com.phongvi.combo_item.ComboItemRepository;
+import com.phongvi.combo_item.ComboItemStatus;
+import com.phongvi.combo_item.dto.ComboItemComboCreateDTO;
 import com.phongvi.exception.NoComboFoundException;
+import com.phongvi.exception.NoProductFoundException;
+import com.phongvi.product.Product;
+import com.phongvi.product.ProductRepository;
 import com.phongvi.product_category.ProductCategoryRepository;
 import com.phongvi.utils.Utils;
 
@@ -30,6 +37,8 @@ public class ComboServiceImpl implements ComboService {
 	private final int DEFAULT_PAGE = 0;
 	private final int DEFAULT_SIZE = 150;
 	private final ProductCategoryRepository categoryRepository;
+	private final ProductRepository productRepository;
+	private final ComboItemRepository comboItemRepository;
 	
 	@Override
 	public ResponseEntity<?> getAllComboByStatus(ComboStatus status, Integer page, Integer size, String name,
@@ -89,8 +98,42 @@ public class ComboServiceImpl implements ComboService {
 
 	@Override
 	public ResponseEntity<?> saveCombo(ComboCreateDTO comboDTO) {
-		// TODO Auto-generated method stub
-		return null;
+		Combo newCombo = mappingService.comboCreateDTOToCombo(comboDTO);
+		
+		Combo comboDB = repository.save(newCombo);
+		
+		List<Long> productIds = comboDTO.items().stream()
+				.map(item -> item.productId())
+				.toList();
+		
+		List<Product> products = productRepository.findAllById(productIds);
+		
+		if (products.size() != productIds.size()) {
+			throw new NoProductFoundException("Tạo mới thất bại: không tìm thấy sản phẩm tương ứng.");
+		}
+		
+		products.forEach(product -> {
+			List<ComboItemComboCreateDTO> comboItems = comboDTO.items().stream()
+					.filter(item -> item.productId() == product.getId())
+					.toList();
+			
+			if (comboItems.size() != 1) throw new NoProductFoundException("Tạo mới thất bại: sản phẩm bị trùng.");
+			
+			ComboItemComboCreateDTO comboItem = comboItems.get(0);
+			
+			comboItemRepository.save(ComboItem.builder()
+					.quantity(comboItem.quantity())
+					.product(product)
+					.createdAt(Utils.getCurrentTimestamp())
+					.createdBy("")
+					.lastChangedAt(Utils.getCurrentTimestamp())
+					.lastChangedBy("")
+					.combo(comboDB)
+					.status(ComboItemStatus.ACTIVE)
+					.build());
+		});
+		
+		return Utils.generateMessageResponseEntity("Tạo mới combo thành công", HttpStatus.CREATED);
 	}
 	
 	
