@@ -19,6 +19,7 @@ import com.phongvi.exception.NoCartItemFoundException;
 import com.phongvi.exception.NoCustomerFoundException;
 import com.phongvi.exception.NoUserFoundException;
 import com.phongvi.order.Order;
+import com.phongvi.order.OrderPaymentType;
 import com.phongvi.order.OrderRepository;
 import com.phongvi.order.OrderShippingType;
 import com.phongvi.order.dto.OrderCreateDTO;
@@ -103,9 +104,13 @@ public class OrderServiceImpl implements OrderService {
 		});
 		
 		// lay payment url
-		CheckoutResponseData checkoutResponse = payOSService.createPaymentLink(orderDB, cartItems);
+		if (orderDB.getPaymentType() == OrderPaymentType.PAYOS) {
+			CheckoutResponseData checkoutResponse = payOSService.createPaymentLink(orderDB, cartItems);			
+			return Utils.generateObjectResponseEntity(checkoutResponse, HttpStatus.OK);
+		}else {
+			return Utils.generateMessageResponseEntity("Đơn hàng tạo mới thành công", HttpStatus.OK);
+		}
 		
-		return Utils.generateObjectResponseEntity(checkoutResponse, HttpStatus.OK);
 		
 	}
 	
