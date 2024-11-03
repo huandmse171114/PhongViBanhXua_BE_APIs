@@ -29,7 +29,7 @@ public class PayOSService {
 	public CheckoutResponseData createPaymentLink(Order order, List<CartItem> cartItems) {
 
         try {
-            final String returnUrl = "https://www.facebook.com/";
+            final String returnUrl = "";
             final String cancelUrl = "https://chatgpt.com/c/671b4451-2888-8012-9c02-c68170a33e3b";
             
             // Gen order code

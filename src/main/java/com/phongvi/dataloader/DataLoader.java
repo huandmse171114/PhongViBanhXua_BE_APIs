@@ -33,7 +33,7 @@ import com.phongvi.utils.Utils;
 import lombok.RequiredArgsConstructor;
 
 @Component
-@Profile(value = "devv")
+@Profile(value = "dev")
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 	private final ProductCategoryRepository productCategoryRepository;
