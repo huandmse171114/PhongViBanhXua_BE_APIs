@@ -97,7 +97,8 @@ public class OrderServiceImpl implements OrderService {
 		cartItems.forEach(item -> {
 			// Kiem tra so luong ton kho
 			// ...
-			
+			item.setStatus(CartItemStatus.INACTIVE);
+			cartItemRepository.save(item);
 			OrderItem orderItem = itemMappingService.cartItemToOrderItem(item);
 			orderItem.setOrder(orderDB);
 			itemRepository.save(orderItem);
