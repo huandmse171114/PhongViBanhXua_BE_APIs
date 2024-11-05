@@ -29,8 +29,8 @@ public class PayOSService {
 	public CheckoutResponseData createPaymentLink(Order order, List<CartItem> cartItems) {
 
         try {
-            final String returnUrl = "";
-            final String cancelUrl = "https://chatgpt.com/c/671b4451-2888-8012-9c02-c68170a33e3b";
+            final String returnUrl = "http://localhost:3000/checkout/success";
+            final String cancelUrl = "http://localhost:3000/checkout/fail";
             
             // Gen order code
             String currentTimeString = String.valueOf(String.valueOf(new Date().getTime()));
