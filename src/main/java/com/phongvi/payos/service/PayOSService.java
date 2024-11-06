@@ -29,8 +29,8 @@ public class PayOSService {
 	public CheckoutResponseData createPaymentLink(Order order, List<CartItem> cartItems) {
 
         try {
-            final String returnUrl = "http://localhost:3000/checkout/success";
-            final String cancelUrl = "http://localhost:3000/checkout/fail";
+            final String returnUrl = "https://phongvibanhxua.vercel.app/checkout/success";
+            final String cancelUrl = "https://phongvibanhxua.vercel.app/checkout/fail";
             
             // Gen order code
             String currentTimeString = String.valueOf(String.valueOf(new Date().getTime()));
